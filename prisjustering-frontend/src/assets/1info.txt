@@ -1,0 +1,3 @@
+Formål: Inneholder statiske ressurser som SVG-ikoner og bilder.
+
+Hvorfor: Ved å samle alt som ikke er «kjørbar» kode på ett sted får vi enkel oversikt over visuelt materiale, og import-path-aliaser blir konsistente (@/assets/svgs/logo.svg).

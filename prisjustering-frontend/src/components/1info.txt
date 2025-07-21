@@ -1,0 +1,4 @@
+Overordnet prinsipp
+Én komponent per mappe: Hver mappe representerer én UI-byggestein, med Component.tsx, eventuelle Component.types.ts, Component.test.tsx og evt. CSS- eller stylefil.
+
+Hvorfor: Én enkel kilde til sannhet for hver komponent, testene blir liggende side-om-side, og navnekonflikter unngås.

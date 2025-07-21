@@ -1,0 +1,5 @@
+PageHeader/
+
+PageHeader.tsx: Overskrift + eventuelt “Ny…”-knapp.
+
+Begrunnelse: Konsistent marginering, typografi og knapp-posisjon på alle sider. Slipper å gjenta styling.

@@ -1,0 +1,7 @@
+DialogForm/
+
+DialogForm.tsx: Generisk modal for oppretting og redigering. Tar inn felt-definisjon (label, type, validator) som prop.
+
+DialogForm.types.ts: Skjema-felt, knappetekst og submit-callback-typer.
+
+Begrunnelse: Dialoger for Ny pris, Ny artikkel, Ny grunndata er strukturelt identiske – bare feltene varierer. Én komponent gjør gjenbruk mulig.

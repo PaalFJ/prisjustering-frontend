@@ -1,0 +1,13 @@
+AppShell/
+
+AppShell.tsx: Wrapper som setter opp <Header>, <Sidebar> og <ContentArea>.
+
+Begrunnelse: Applikasjonen skal ha samme ramme («shell») på alle sider; ved å isolere denne som egen komponent kan vi for eksempel enkelt slå av Sidebaren i enkelte views.
+
+Header.tsx: Øvre toppfelt med logo, brukermeny, eventuell global søk-ikon.
+
+Begrunnelse: Et konsistent toppbånd gir god brukeropplevelse og er helt adskilt fra innholdet.
+
+Sidebar.tsx: Venstremeny for navigasjon mellom hovedsidene.
+
+Begrunnelse: Navigasjonslogikk samles på ett sted, kan lett utvides med flere ruter.

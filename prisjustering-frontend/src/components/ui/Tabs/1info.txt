@@ -1,0 +1,5 @@
+Tabs/
+
+Tabs.tsx: Wrapper rundt shadcn/ui sin Tab-komponent.
+
+Begrunnelse: Vi ønsker at fanebygging ser lik ut over hele appen, og vi trenger bare ett sted å oppdatere om stilen endres.

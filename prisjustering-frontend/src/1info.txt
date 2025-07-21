@@ -1,0 +1,1 @@
+Øverste nivå for all applikasjonslogikk. Holder JavaScript/TypeScript-kode adskilt fra public/ og konfigurasjon.

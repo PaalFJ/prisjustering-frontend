@@ -1,0 +1,7 @@
+DataTable/
+
+DataTable.tsx: Abstraksjon over shadcn/ui-datatable med konfigurerbare columns og data.
+
+DataTable.types.ts: Definerer typer for kolonner, rader og callbacks.
+
+Begrunnelse: Tabeller brukes i flere sider (Prisliste, Artikler, Grunndata). Felles funksjonalitet (sortering, paginering, onEdit, onDelete) leveres her, så vi unngår duplisering.
