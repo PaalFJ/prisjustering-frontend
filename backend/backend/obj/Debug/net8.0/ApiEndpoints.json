@@ -1,0 +1,1175 @@
+[
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.BehandlingsmetodeController",
+    "Method": "GetBehandlingsmetoder",
+    "RelativePath": "api/Behandlingsmetode",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Behandlingsmetode, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.BehandlingsmetodeController",
+    "Method": "PostBehandlingsmetode",
+    "RelativePath": "api/Behandlingsmetode",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "metode",
+        "Type": "PrisjusteringProsjekt.Models.Behandlingsmetode",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Behandlingsmetode",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.BehandlingsmetodeController",
+    "Method": "GetBehandlingsmetode",
+    "RelativePath": "api/Behandlingsmetode/{behandlingsMetodeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "behandlingsMetodeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Behandlingsmetode",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.BehandlingsmetodeController",
+    "Method": "PutBehandlingsmetode",
+    "RelativePath": "api/Behandlingsmetode/{behandlingsMetodeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "behandlingsMetodeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "metode",
+        "Type": "PrisjusteringProsjekt.Models.Behandlingsmetode",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.BehandlingsmetodeController",
+    "Method": "DeleteBehandlingsmetode",
+    "RelativePath": "api/Behandlingsmetode/{behandlingsMetodeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "behandlingsMetodeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerController",
+    "Method": "GetContainere",
+    "RelativePath": "api/Container",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Container, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerController",
+    "Method": "PostContainer",
+    "RelativePath": "api/Container",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "container",
+        "Type": "PrisjusteringProsjekt.Models.Container",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Container",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerController",
+    "Method": "GetContainer",
+    "RelativePath": "api/Container/{containerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "containerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Container",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerController",
+    "Method": "PutContainer",
+    "RelativePath": "api/Container/{containerId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "containerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "container",
+        "Type": "PrisjusteringProsjekt.Models.Container",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerController",
+    "Method": "DeleteContainer",
+    "RelativePath": "api/Container/{containerId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "containerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerTypeController",
+    "Method": "GetContainerTyper",
+    "RelativePath": "api/ContainerType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.ContainerType, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerTypeController",
+    "Method": "PostContainerType",
+    "RelativePath": "api/ContainerType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "containerType",
+        "Type": "PrisjusteringProsjekt.Models.ContainerType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.ContainerType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerTypeController",
+    "Method": "GetContainerType",
+    "RelativePath": "api/ContainerType/{containerTypeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "containerTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.ContainerType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerTypeController",
+    "Method": "PutContainerType",
+    "RelativePath": "api/ContainerType/{containerTypeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "containerTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "containerType",
+        "Type": "PrisjusteringProsjekt.Models.ContainerType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.ContainerTypeController",
+    "Method": "DeleteContainerType",
+    "RelativePath": "api/ContainerType/{containerTypeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "containerTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.EnhetController",
+    "Method": "GetEnheter",
+    "RelativePath": "api/Enhet",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Enhet, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.EnhetController",
+    "Method": "PostEnhet",
+    "RelativePath": "api/Enhet",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enhet",
+        "Type": "PrisjusteringProsjekt.Models.Enhet",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Enhet",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.EnhetController",
+    "Method": "GetEnhet",
+    "RelativePath": "api/Enhet/{enhetId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enhetId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Enhet",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.EnhetController",
+    "Method": "PutEnhet",
+    "RelativePath": "api/Enhet/{enhetId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enhetId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "enhet",
+        "Type": "PrisjusteringProsjekt.Models.Enhet",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.EnhetController",
+    "Method": "DeleteEnhet",
+    "RelativePath": "api/Enhet/{enhetId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enhetId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonController",
+    "Method": "GetFraksjoner",
+    "RelativePath": "api/Fraksjon",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Fraksjon, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonController",
+    "Method": "PostFraksjon",
+    "RelativePath": "api/Fraksjon",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fraksjon",
+        "Type": "PrisjusteringProsjekt.Models.Fraksjon",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Fraksjon",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonController",
+    "Method": "GetFraksjon",
+    "RelativePath": "api/Fraksjon/{fraksjonId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fraksjonId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Fraksjon",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonController",
+    "Method": "PutFraksjon",
+    "RelativePath": "api/Fraksjon/{fraksjonId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fraksjonId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "fraksjon",
+        "Type": "PrisjusteringProsjekt.Models.Fraksjon",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonController",
+    "Method": "DeleteFraksjon",
+    "RelativePath": "api/Fraksjon/{fraksjonId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fraksjonId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonsgruppeController",
+    "Method": "GetFraksjonsgrupper",
+    "RelativePath": "api/Fraksjonsgruppe",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Fraksjonsgruppe, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonsgruppeController",
+    "Method": "PostFraksjonsgruppe",
+    "RelativePath": "api/Fraksjonsgruppe",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fraksjonsgruppe",
+        "Type": "PrisjusteringProsjekt.Models.Fraksjonsgruppe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Fraksjonsgruppe",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonsgruppeController",
+    "Method": "GetFraksjonsgruppe",
+    "RelativePath": "api/Fraksjonsgruppe/{fraksjonsgruppeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fraksjonsgruppeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Fraksjonsgruppe",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonsgruppeController",
+    "Method": "PutFraksjonsgruppe",
+    "RelativePath": "api/Fraksjonsgruppe/{fraksjonsgruppeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fraksjonsgruppeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "fraksjonsgruppe",
+        "Type": "PrisjusteringProsjekt.Models.Fraksjonsgruppe",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonsgruppeController",
+    "Method": "DeleteFraksjonsgruppe",
+    "RelativePath": "api/Fraksjonsgruppe/{fraksjonsgruppeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fraksjonsgruppeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeieController",
+    "Method": "GetLeier",
+    "RelativePath": "api/Leie",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Leie, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeieController",
+    "Method": "PostLeie",
+    "RelativePath": "api/Leie",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leie",
+        "Type": "PrisjusteringProsjekt.Models.Leie",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Leie",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeieController",
+    "Method": "GetLeie",
+    "RelativePath": "api/Leie/{leieId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leieId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Leie",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeieController",
+    "Method": "PutLeie",
+    "RelativePath": "api/Leie/{leieId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leieId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "leie",
+        "Type": "PrisjusteringProsjekt.Models.Leie",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeieController",
+    "Method": "DeleteLeie",
+    "RelativePath": "api/Leie/{leieId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leieId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeverandorController",
+    "Method": "GetLeverandorer",
+    "RelativePath": "api/Leverandor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Leverandor, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeverandorController",
+    "Method": "PostLeverandor",
+    "RelativePath": "api/Leverandor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leverandor",
+        "Type": "PrisjusteringProsjekt.Models.Leverandor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Leverandor",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeverandorController",
+    "Method": "GetLeverandor",
+    "RelativePath": "api/Leverandor/{leverandorId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leverandorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Leverandor",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeverandorController",
+    "Method": "PutLeverandor",
+    "RelativePath": "api/Leverandor/{leverandorId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leverandorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "leverandor",
+        "Type": "PrisjusteringProsjekt.Models.Leverandor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.LeverandorController",
+    "Method": "DeleteLeverandor",
+    "RelativePath": "api/Leverandor/{leverandorId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leverandorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.MottakController",
+    "Method": "GetMottak",
+    "RelativePath": "api/Mottak",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Mottak, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.MottakController",
+    "Method": "PostMottak",
+    "RelativePath": "api/Mottak",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mottak",
+        "Type": "PrisjusteringProsjekt.Models.Mottak",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Mottak",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.MottakController",
+    "Method": "GetMottak",
+    "RelativePath": "api/Mottak/{mottakId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mottakId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Mottak",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.MottakController",
+    "Method": "PutMottak",
+    "RelativePath": "api/Mottak/{mottakId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mottakId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "mottak",
+        "Type": "PrisjusteringProsjekt.Models.Mottak",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.MottakController",
+    "Method": "DeleteMottak",
+    "RelativePath": "api/Mottak/{mottakId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mottakId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.PrislinjeController",
+    "Method": "GetPrislinjer",
+    "RelativePath": "api/Prislinje",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Prislinje, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.PrislinjeController",
+    "Method": "PostPrislinje",
+    "RelativePath": "api/Prislinje",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prislinje",
+        "Type": "PrisjusteringProsjekt.Models.Prislinje",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Prislinje",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.PrislinjeController",
+    "Method": "PutPrislinje",
+    "RelativePath": "api/Prislinje/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updated",
+        "Type": "PrisjusteringProsjekt.Models.Prislinje",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.PrislinjeController",
+    "Method": "DeletePrislinje",
+    "RelativePath": "api/Prislinje/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.TransportorController",
+    "Method": "GetTransportorer",
+    "RelativePath": "api/Transportor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Transportor, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.TransportorController",
+    "Method": "PostTransportor",
+    "RelativePath": "api/Transportor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "transportor",
+        "Type": "PrisjusteringProsjekt.Models.Transportor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Transportor",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.TransportorController",
+    "Method": "GetTransportor",
+    "RelativePath": "api/Transportor/{transportorId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "transportorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Transportor",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.TransportorController",
+    "Method": "PutTransportor",
+    "RelativePath": "api/Transportor/{transportorId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "transportorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "transportor",
+        "Type": "PrisjusteringProsjekt.Models.Transportor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.TransportorController",
+    "Method": "DeleteTransportor",
+    "RelativePath": "api/Transportor/{transportorId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "transportorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
