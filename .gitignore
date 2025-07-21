@@ -13,3 +13,6 @@ build/
 .vscode/
 .DS_Store
 Thumb.db
+
+# Visual Studio IDE metadata
+.vs/
