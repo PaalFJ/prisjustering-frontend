@@ -1,0 +1,37 @@
+// src/pages/ArticlesPage/ArticlesPage.tsx
+import FraksjonTab from "../ArticlesPage/tabs/FraksjonTab";
+import LeieTab from "../ArticlesPage/tabs/LeieTab";
+
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/shadcn/tabs";
+
+export default function ArticlesPage() {
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mb-4">Artikler</h1>
+      <Tabs defaultValue="fraksjon">
+        <TabsList>
+          <TabsTrigger value="fraksjon">Fraksjoner</TabsTrigger>
+          <TabsTrigger value="leie">Leie</TabsTrigger>
+          {/* <TabsTrigger value="leie">Leie</TabsTrigger> */}
+        </TabsList>
+
+        <TabsContent value="fraksjon">
+          <FraksjonTab />
+        </TabsContent>
+
+        <TabsContent value="leie">
+          <LeieTab />
+        </TabsContent>
+
+        {/* <TabsContent value="leie">
+          <LeieTab />
+        </TabsContent> */}
+      </Tabs>
+    </div>
+  );
+}

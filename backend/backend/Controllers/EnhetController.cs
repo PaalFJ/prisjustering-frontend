@@ -36,7 +36,6 @@ public class EnhetController : ControllerBase
     {
         var enhet = await _context.Enheter.FindAsync(enhetId);
         if (enhet == null) return NotFound();
-
         return enhet;
     }
 
@@ -48,7 +47,6 @@ public class EnhetController : ControllerBase
     {
         _context.Enheter.Add(enhet);
         await _context.SaveChangesAsync();
-
         return CreatedAtAction(nameof(GetEnhet), new { enhetId = enhet.EnhetId }, enhet);
     }
 

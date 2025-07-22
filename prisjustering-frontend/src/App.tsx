@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AppShell from './components/ui/AppShell/AppShell';
+import WelcomePage from './pages/WelcomePage/WelcomePage';
+import PriceListPage from './pages/PriceListPage/PriceListPage';
+import ArticlesPage from './pages/ArticlesPage/ArticlesPage';
+import MasterDataPage from './pages/MasterDataPage/MasterDataPage';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        {/* Alt under AppShell */}
+        <Route path="/" element={<AppShell />}>
+          <Route index element={<WelcomePage />} />
+          <Route path="prisliste" element={<PriceListPage />} />
+          <Route path="artikler" element={<ArticlesPage />} />
+          <Route path="grunndata" element={<MasterDataPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
