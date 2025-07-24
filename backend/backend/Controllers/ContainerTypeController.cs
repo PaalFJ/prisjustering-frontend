@@ -65,16 +65,33 @@ public class ContainerTypeController : ControllerBase
     }
 
     /// <summary>
-    /// Slett en containertype.
+    /// Slett en containertype (nekter hvis den er i bruk).
     /// </summary>
     [HttpDelete("{containerTypeId}")]
     public async Task<IActionResult> DeleteContainerType(int containerTypeId)
     {
-        var containerType = await _context.ContainerTyper.FindAsync(containerTypeId);
-        if (containerType == null) return NotFound();
+        var type = await _context.ContainerTyper
+            .Include(t => t.Containere)
+            .Include(t => t.Leier)
+            .Include(t => t.Prislinjer)
+            .Include(t => t.PrislinjeHistorikk)
+            .FirstOrDefaultAsync(t => t.ContainerTypeId == containerTypeId);
 
-        _context.ContainerTyper.Remove(containerType);
+        if (type == null)
+            return NotFound();
+
+        bool iBruk = (type.Containere?.Any() == true)
+                  || (type.Leier?.Any() == true)
+                  || (type.Prislinjer?.Any() == true)
+                  || (type.PrislinjeHistorikk?.Any() == true);
+
+        if (iBruk)
+            return Conflict("Kan ikke slette: Containertypen er i bruk.");
+
+        _context.ContainerTyper.Remove(type);
         await _context.SaveChangesAsync();
+
         return NoContent();
     }
+
 }

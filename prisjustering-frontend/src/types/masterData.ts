@@ -77,6 +77,7 @@ export interface Container {
   navn: string;
   containerTypeId: number;
   containerType?: ContainerType;
+  enhetId: number;
   notat?: string;
   aktiv: boolean;
   volum?: number;

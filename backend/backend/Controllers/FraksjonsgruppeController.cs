@@ -75,13 +75,20 @@ public class FraksjonsgruppeController : ControllerBase
     /// <summary>
     /// Slett en fraksjonsgruppe.
     /// </summary>
-    [HttpDelete("{fraksjonsgruppeId}")]
-    public async Task<IActionResult> DeleteFraksjonsgruppe(int fraksjonsgruppeId)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteFraksjonsgruppe(int id)
     {
-        var gruppe = await _context.Fraksjonsgrupper.FindAsync(fraksjonsgruppeId);
-        if (gruppe == null) return NotFound();
+        var fraksjonsgruppe = await _context.Fraksjonsgrupper.FindAsync(id);
 
-        _context.Fraksjonsgrupper.Remove(gruppe);
+        if (fraksjonsgruppe == null)
+            return NotFound();
+
+        // Sjekk om det finnes noen Fraksjon som bruker denne gruppa
+        bool iBruk = await _context.Fraksjoner.AnyAsync(f => f.FraksjonsgruppeId == id);
+        if (iBruk)
+            return Conflict("Kan ikke slette. Fraksjonsgruppen er i bruk av en eller flere fraksjoner.");
+
+        _context.Fraksjonsgrupper.Remove(fraksjonsgruppe);
         await _context.SaveChangesAsync();
 
         return NoContent();

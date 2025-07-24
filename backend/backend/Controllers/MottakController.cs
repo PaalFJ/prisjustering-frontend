@@ -77,15 +77,26 @@ public class MottakController : ControllerBase
     /// <summary>
     /// Slett et mottak.
     /// </summary>
+    /// <summary>
+    /// Slett et mottak. Feiler hvis det er i bruk i prislinjer.
+    /// </summary>
     [HttpDelete("{mottakId}")]
     public async Task<IActionResult> DeleteMottak(int mottakId)
     {
-        var mottak = await _context.Mottak.FindAsync(mottakId);
-        if (mottak == null) return NotFound();
+        var mottak = await _context.Mottak
+            .Include(m => m.Prislinjer)
+            .FirstOrDefaultAsync(m => m.MottakId == mottakId);
+
+        if (mottak == null)
+            return NotFound();
+
+        if (mottak.Prislinjer != null && mottak.Prislinjer.Any())
+            return BadRequest("Kan ikke slette: Mottaket er i bruk i en eller flere prislinjer.");
 
         _context.Mottak.Remove(mottak);
         await _context.SaveChangesAsync();
 
         return NoContent();
     }
+
 }

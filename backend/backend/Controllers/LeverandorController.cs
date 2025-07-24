@@ -76,15 +76,28 @@ public class LeverandorController : ControllerBase
     /// <summary>
     /// Slett en leverandør.
     /// </summary>
+    /// <summary>
+    /// Slett en leverandør.
+    /// Feiler dersom leverandøren er i bruk.
+    /// </summary>
     [HttpDelete("{leverandorId}")]
     public async Task<IActionResult> DeleteLeverandor(int leverandorId)
     {
-        var leverandor = await _context.Leverandorer.FindAsync(leverandorId);
-        if (leverandor == null) return NotFound();
+        var leverandor = await _context.Leverandorer
+            .Include(l => l.Leier)
+            .Include(l => l.Prislinjer)
+            .FirstOrDefaultAsync(l => l.LeverandorId == leverandorId);
+
+        if (leverandor == null)
+            return NotFound();
+
+        if ((leverandor.Leier?.Any() ?? false) || (leverandor.Prislinjer?.Any() ?? false))
+            return BadRequest("Kan ikke slette: Leverandøren er i bruk i en eller flere artikler eller prislinjer.");
 
         _context.Leverandorer.Remove(leverandor);
         await _context.SaveChangesAsync();
 
         return NoContent();
     }
+
 }

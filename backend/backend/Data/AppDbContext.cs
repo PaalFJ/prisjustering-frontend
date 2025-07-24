@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 using PrisjusteringProsjekt.Models;
 
@@ -22,6 +23,9 @@ namespace backend.Data
         public DbSet<Transportor> Transportorer { get; set; }
         public DbSet<ContainerType> ContainerTyper { get; set; }
         public DbSet<Container> Containere { get; set; }
+        public DbSet<Salgsvare> Salgsvarer { get; set; }
+
+        public DbSet<Gebyr> Gebyrer { get; set; }
 
 
     }

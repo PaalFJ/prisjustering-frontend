@@ -118,7 +118,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Container, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Container, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -138,13 +138,13 @@
     "Parameters": [
       {
         "Name": "container",
-        "Type": "PrisjusteringProsjekt.Models.Container",
+        "Type": "Container",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "PrisjusteringProsjekt.Models.Container",
+        "Type": "Container",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -170,7 +170,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "PrisjusteringProsjekt.Models.Container",
+        "Type": "Container",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -195,7 +195,7 @@
       },
       {
         "Name": "container",
-        "Type": "PrisjusteringProsjekt.Models.Container",
+        "Type": "Container",
         "IsRequired": true
       }
     ],
@@ -640,13 +640,122 @@
   {
     "ContainingType": "PrisjusteringProsjekt.Controllers.FraksjonsgruppeController",
     "Method": "DeleteFraksjonsgruppe",
-    "RelativePath": "api/Fraksjonsgruppe/{fraksjonsgruppeId}",
+    "RelativePath": "api/Fraksjonsgruppe/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "fraksjonsgruppeId",
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.GebyrController",
+    "Method": "GetGebyrer",
+    "RelativePath": "api/Gebyr",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.Gebyr, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.GebyrController",
+    "Method": "PostGebyr",
+    "RelativePath": "api/Gebyr",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gebyr",
+        "Type": "PrisjusteringProsjekt.Models.Gebyr",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Gebyr",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.GebyrController",
+    "Method": "GetGebyr",
+    "RelativePath": "api/Gebyr/{gebyrId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gebyrId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.Gebyr",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.GebyrController",
+    "Method": "PutGebyr",
+    "RelativePath": "api/Gebyr/{gebyrId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gebyrId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "gebyr",
+        "Type": "PrisjusteringProsjekt.Models.Gebyr",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.GebyrController",
+    "Method": "DeleteGebyr",
+    "RelativePath": "api/Gebyr/{gebyrId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gebyrId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -1057,6 +1166,187 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.PrislinjeHistorikkController",
+    "Method": "GetHistorikk",
+    "RelativePath": "api/PrislinjeHistorikk",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.PrislinjeHistorikk, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.PrislinjeHistorikkController",
+    "Method": "GetHistorikkPost",
+    "RelativePath": "api/PrislinjeHistorikk/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PrisjusteringProsjekt.Models.PrislinjeHistorikk",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.PrislinjeHistorikkController",
+    "Method": "GetHistorikkForPrislinje",
+    "RelativePath": "api/PrislinjeHistorikk/prislinje/{prislinjeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prislinjeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PrisjusteringProsjekt.Models.PrislinjeHistorikk, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.SalgsvareController",
+    "Method": "GetSalgsvarer",
+    "RelativePath": "api/Salgsvare",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[backend.Models.Salgsvare, backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.SalgsvareController",
+    "Method": "PostSalgsvare",
+    "RelativePath": "api/Salgsvare",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "salgsvare",
+        "Type": "backend.Models.Salgsvare",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "backend.Models.Salgsvare",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.SalgsvareController",
+    "Method": "GetSalgsvare",
+    "RelativePath": "api/Salgsvare/{salgsvareId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "salgsvareId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "backend.Models.Salgsvare",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.SalgsvareController",
+    "Method": "PutSalgsvare",
+    "RelativePath": "api/Salgsvare/{salgsvareId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "salgsvareId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "salgsvare",
+        "Type": "backend.Models.Salgsvare",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PrisjusteringProsjekt.Controllers.SalgsvareController",
+    "Method": "DeleteSalgsvare",
+    "RelativePath": "api/Salgsvare/{salgsvareId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "salgsvareId",
         "Type": "System.Int32",
         "IsRequired": true
       }

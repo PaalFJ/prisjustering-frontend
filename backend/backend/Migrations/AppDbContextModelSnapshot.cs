@@ -22,6 +22,52 @@ namespace backend.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("Container", b =>
+                {
+                    b.Property<int>("ContainerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ContainerId"));
+
+                    b.Property<bool>("Aktiv")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("ContainerTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("EnhetId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Navn")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Notat")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<double?>("Volum")
+                        .HasColumnType("double");
+
+                    b.HasKey("ContainerId");
+
+                    b.HasIndex("ContainerTypeId");
+
+                    b.HasIndex("EnhetId");
+
+                    b.ToTable("Containere");
+                });
+
             modelBuilder.Entity("PrisjusteringProsjekt.Models.Behandlingsmetode", b =>
                 {
                     b.Property<int>("BehandlingsMetodeId")
@@ -45,46 +91,6 @@ namespace backend.Migrations
                     b.HasKey("BehandlingsMetodeId");
 
                     b.ToTable("Behandlingsmetoder");
-                });
-
-            modelBuilder.Entity("PrisjusteringProsjekt.Models.Container", b =>
-                {
-                    b.Property<int>("ContainerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ContainerId"));
-
-                    b.Property<bool>("Aktiv")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("ContainerTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Navn")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Notat")
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<double?>("Volum")
-                        .HasColumnType("double");
-
-                    b.HasKey("ContainerId");
-
-                    b.HasIndex("ContainerTypeId");
-
-                    b.ToTable("Containere");
                 });
 
             modelBuilder.Entity("PrisjusteringProsjekt.Models.ContainerType", b =>
@@ -149,6 +155,12 @@ namespace backend.Migrations
                     b.Property<bool>("Aktiv")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("ArtikkeltekstInternt")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("navn");
+
                     b.Property<int>("BehandlingsmetodeId")
                         .HasColumnType("int");
 
@@ -164,11 +176,6 @@ namespace backend.Migrations
                     b.Property<int>("FraksjonsgruppeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Navn")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
                     b.Property<string>("Notat")
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
@@ -177,8 +184,8 @@ namespace backend.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("VarenummerInternt")
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("VarenummerNS")
                         .HasMaxLength(50)
@@ -220,6 +227,48 @@ namespace backend.Migrations
                     b.ToTable("Fraksjonsgrupper");
                 });
 
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Gebyr", b =>
+                {
+                    b.Property<int>("GebyrId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("GebyrId"));
+
+                    b.Property<bool>("Aktiv")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ArtikkeltekstInternt")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("navn");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EnhetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notat")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("VarenummerInternt")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("GebyrId");
+
+                    b.HasIndex("EnhetId");
+
+                    b.ToTable("Gebyrer");
+                });
+
             modelBuilder.Entity("PrisjusteringProsjekt.Models.Leie", b =>
                 {
                     b.Property<int>("LeieId")
@@ -231,6 +280,12 @@ namespace backend.Migrations
 
                     b.Property<bool>("Aktiv")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ArtikkeltekstInternt")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("navn");
 
                     b.Property<int?>("ContainerId")
                         .HasColumnType("int");
@@ -244,20 +299,28 @@ namespace backend.Migrations
                     b.Property<int>("EnhetId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("ErTjeneste")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("ErUtstyr")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int?>("LeverandorId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Navn")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Notat")
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
+                    b.Property<int?>("TransportorId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("VarenummerInternt")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("LeieId");
 
@@ -268,6 +331,8 @@ namespace backend.Migrations
                     b.HasIndex("EnhetId");
 
                     b.HasIndex("LeverandorId");
+
+                    b.HasIndex("TransportorId");
 
                     b.ToTable("Leier");
                 });
@@ -453,11 +518,15 @@ namespace backend.Migrations
 
                     b.HasIndex("FraksjonId");
 
+                    b.HasIndex("GebyrId");
+
                     b.HasIndex("LeieId");
 
                     b.HasIndex("LeverandorId");
 
                     b.HasIndex("MottakId");
+
+                    b.HasIndex("SalgsvareId");
 
                     b.HasIndex("TransportorId");
 
@@ -589,6 +658,16 @@ namespace backend.Migrations
 
                     b.HasKey("PrislinjeHistorikkId");
 
+                    b.HasIndex("ContainerId");
+
+                    b.HasIndex("ContainerTypeId");
+
+                    b.HasIndex("FraksjonId");
+
+                    b.HasIndex("SalgsvareId");
+
+                    b.HasIndex("TransportorId");
+
                     b.ToTable("PrislinjeHistorikk");
                 });
 
@@ -621,27 +700,98 @@ namespace backend.Migrations
                     b.ToTable("Transportorer");
                 });
 
-            modelBuilder.Entity("PrisjusteringProsjekt.Models.Container", b =>
+            modelBuilder.Entity("backend.Models.Salgsvare", b =>
                 {
-                    b.HasOne("PrisjusteringProsjekt.Models.ContainerType", "ContainerType")
-                        .WithMany()
-                        .HasForeignKey("ContainerTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("SalgsvareId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
-                    b.Navigation("ContainerType");
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("SalgsvareId"));
+
+                    b.Property<bool>("Aktiv")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ArtikkeltekstInternt")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("navn");
+
+                    b.Property<string>("ArtikkeltekstLeverandor")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("EnhetId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ErTjeneste")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("MottakId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notat")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<int?>("TransportorId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("VarenummerInternt")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("VarenummerLeverandor")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.HasKey("SalgsvareId");
+
+                    b.HasIndex("EnhetId");
+
+                    b.HasIndex("MottakId");
+
+                    b.HasIndex("TransportorId");
+
+                    b.ToTable("Salgsvarer");
                 });
 
-            modelBuilder.Entity("PrisjusteringProsjekt.Models.Fraksjon", b =>
+            modelBuilder.Entity("Container", b =>
                 {
-                    b.HasOne("PrisjusteringProsjekt.Models.Behandlingsmetode", "Behandlingsmetode")
-                        .WithMany()
-                        .HasForeignKey("BehandlingsmetodeId")
+                    b.HasOne("PrisjusteringProsjekt.Models.ContainerType", "ContainerType")
+                        .WithMany("Containere")
+                        .HasForeignKey("ContainerTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("PrisjusteringProsjekt.Models.Enhet", "Enhet")
                         .WithMany()
+                        .HasForeignKey("EnhetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContainerType");
+
+                    b.Navigation("Enhet");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Fraksjon", b =>
+                {
+                    b.HasOne("PrisjusteringProsjekt.Models.Behandlingsmetode", "Behandlingsmetode")
+                        .WithMany("Fraksjoner")
+                        .HasForeignKey("BehandlingsmetodeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PrisjusteringProsjekt.Models.Enhet", "Enhet")
+                        .WithMany("Fraksjoner")
                         .HasForeignKey("EnhetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -659,25 +809,40 @@ namespace backend.Migrations
                     b.Navigation("Fraksjonsgruppe");
                 });
 
-            modelBuilder.Entity("PrisjusteringProsjekt.Models.Leie", b =>
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Gebyr", b =>
                 {
-                    b.HasOne("PrisjusteringProsjekt.Models.Container", "Container")
-                        .WithMany()
-                        .HasForeignKey("ContainerId");
-
-                    b.HasOne("PrisjusteringProsjekt.Models.ContainerType", "ContainerType")
-                        .WithMany()
-                        .HasForeignKey("ContainerTypeId");
-
                     b.HasOne("PrisjusteringProsjekt.Models.Enhet", "Enhet")
                         .WithMany()
                         .HasForeignKey("EnhetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Enhet");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Leie", b =>
+                {
+                    b.HasOne("Container", "Container")
+                        .WithMany("Leier")
+                        .HasForeignKey("ContainerId");
+
+                    b.HasOne("PrisjusteringProsjekt.Models.ContainerType", "ContainerType")
+                        .WithMany("Leier")
+                        .HasForeignKey("ContainerTypeId");
+
+                    b.HasOne("PrisjusteringProsjekt.Models.Enhet", "Enhet")
+                        .WithMany("Leier")
+                        .HasForeignKey("EnhetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("PrisjusteringProsjekt.Models.Leverandor", "Leverandor")
-                        .WithMany()
+                        .WithMany("Leier")
                         .HasForeignKey("LeverandorId");
+
+                    b.HasOne("PrisjusteringProsjekt.Models.Transportor", "Transportor")
+                        .WithMany()
+                        .HasForeignKey("TransportorId");
 
                     b.Navigation("Container");
 
@@ -686,38 +851,48 @@ namespace backend.Migrations
                     b.Navigation("Enhet");
 
                     b.Navigation("Leverandor");
+
+                    b.Navigation("Transportor");
                 });
 
             modelBuilder.Entity("PrisjusteringProsjekt.Models.Prislinje", b =>
                 {
-                    b.HasOne("PrisjusteringProsjekt.Models.Container", "Container")
-                        .WithMany()
+                    b.HasOne("Container", "Container")
+                        .WithMany("Prislinjer")
                         .HasForeignKey("ContainerId");
 
                     b.HasOne("PrisjusteringProsjekt.Models.ContainerType", "ContainerType")
-                        .WithMany()
+                        .WithMany("Prislinjer")
                         .HasForeignKey("ContainerTypeId");
 
                     b.HasOne("PrisjusteringProsjekt.Models.Fraksjon", "Fraksjon")
-                        .WithMany()
+                        .WithMany("Prislinjer")
                         .HasForeignKey("FraksjonId");
 
+                    b.HasOne("PrisjusteringProsjekt.Models.Gebyr", null)
+                        .WithMany("Prislinjer")
+                        .HasForeignKey("GebyrId");
+
                     b.HasOne("PrisjusteringProsjekt.Models.Leie", "Leie")
-                        .WithMany()
+                        .WithMany("Prislinjer")
                         .HasForeignKey("LeieId");
 
                     b.HasOne("PrisjusteringProsjekt.Models.Leverandor", "Leverandor")
-                        .WithMany()
+                        .WithMany("Prislinjer")
                         .HasForeignKey("LeverandorId");
 
                     b.HasOne("PrisjusteringProsjekt.Models.Mottak", "Mottak")
-                        .WithMany()
+                        .WithMany("Prislinjer")
                         .HasForeignKey("MottakId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("backend.Models.Salgsvare", null)
+                        .WithMany("Prislinjer")
+                        .HasForeignKey("SalgsvareId");
+
                     b.HasOne("PrisjusteringProsjekt.Models.Transportor", "Transportor")
-                        .WithMany()
+                        .WithMany("Prislinjer")
                         .HasForeignKey("TransportorId");
 
                     b.Navigation("Container");
@@ -733,6 +908,127 @@ namespace backend.Migrations
                     b.Navigation("Mottak");
 
                     b.Navigation("Transportor");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.PrislinjeHistorikk", b =>
+                {
+                    b.HasOne("Container", null)
+                        .WithMany("PrislinjeHistorikk")
+                        .HasForeignKey("ContainerId");
+
+                    b.HasOne("PrisjusteringProsjekt.Models.ContainerType", null)
+                        .WithMany("PrislinjeHistorikk")
+                        .HasForeignKey("ContainerTypeId");
+
+                    b.HasOne("PrisjusteringProsjekt.Models.Fraksjon", null)
+                        .WithMany("PrislinjeHistorikk")
+                        .HasForeignKey("FraksjonId");
+
+                    b.HasOne("backend.Models.Salgsvare", null)
+                        .WithMany("PrislinjeHistorikk")
+                        .HasForeignKey("SalgsvareId");
+
+                    b.HasOne("PrisjusteringProsjekt.Models.Transportor", null)
+                        .WithMany("PrislinjeHistorikk")
+                        .HasForeignKey("TransportorId");
+                });
+
+            modelBuilder.Entity("backend.Models.Salgsvare", b =>
+                {
+                    b.HasOne("PrisjusteringProsjekt.Models.Enhet", "Enhet")
+                        .WithMany()
+                        .HasForeignKey("EnhetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PrisjusteringProsjekt.Models.Mottak", "Mottak")
+                        .WithMany()
+                        .HasForeignKey("MottakId");
+
+                    b.HasOne("PrisjusteringProsjekt.Models.Transportor", "Transportor")
+                        .WithMany()
+                        .HasForeignKey("TransportorId");
+
+                    b.Navigation("Enhet");
+
+                    b.Navigation("Mottak");
+
+                    b.Navigation("Transportor");
+                });
+
+            modelBuilder.Entity("Container", b =>
+                {
+                    b.Navigation("Leier");
+
+                    b.Navigation("PrislinjeHistorikk");
+
+                    b.Navigation("Prislinjer");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Behandlingsmetode", b =>
+                {
+                    b.Navigation("Fraksjoner");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.ContainerType", b =>
+                {
+                    b.Navigation("Containere");
+
+                    b.Navigation("Leier");
+
+                    b.Navigation("PrislinjeHistorikk");
+
+                    b.Navigation("Prislinjer");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Enhet", b =>
+                {
+                    b.Navigation("Fraksjoner");
+
+                    b.Navigation("Leier");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Fraksjon", b =>
+                {
+                    b.Navigation("PrislinjeHistorikk");
+
+                    b.Navigation("Prislinjer");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Gebyr", b =>
+                {
+                    b.Navigation("Prislinjer");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Leie", b =>
+                {
+                    b.Navigation("Prislinjer");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Leverandor", b =>
+                {
+                    b.Navigation("Leier");
+
+                    b.Navigation("Prislinjer");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Mottak", b =>
+                {
+                    b.Navigation("Prislinjer");
+                });
+
+            modelBuilder.Entity("PrisjusteringProsjekt.Models.Transportor", b =>
+                {
+                    b.Navigation("PrislinjeHistorikk");
+
+                    b.Navigation("Prislinjer");
+                });
+
+            modelBuilder.Entity("backend.Models.Salgsvare", b =>
+                {
+                    b.Navigation("PrislinjeHistorikk");
+
+                    b.Navigation("Prislinjer");
                 });
 #pragma warning restore 612, 618
         }

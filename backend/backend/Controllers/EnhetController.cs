@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using backend.Data;
 using PrisjusteringProsjekt.Models;
+using backend.Data;
 
 namespace PrisjusteringProsjekt.Controllers;
 
@@ -77,13 +77,21 @@ public class EnhetController : ControllerBase
     }
 
     /// <summary>
-    /// Slett en enhet.
+    /// Slett en enhet. Feiler hvis den er i bruk i noen artikler.
     /// </summary>
     [HttpDelete("{enhetId}")]
     public async Task<IActionResult> DeleteEnhet(int enhetId)
     {
-        var enhet = await _context.Enheter.FindAsync(enhetId);
-        if (enhet == null) return NotFound();
+        var enhet = await _context.Enheter
+            .Include(e => e.Fraksjoner)
+            .Include(e => e.Leier)
+            .FirstOrDefaultAsync(e => e.EnhetId == enhetId);
+
+        if (enhet == null)
+            return NotFound();
+
+        if ((enhet.Fraksjoner?.Any() ?? false) || (enhet.Leier?.Any() ?? false))
+            return BadRequest("Kan ikke slette: Enheten er i bruk i en eller flere artikler.");
 
         _context.Enheter.Remove(enhet);
         await _context.SaveChangesAsync();

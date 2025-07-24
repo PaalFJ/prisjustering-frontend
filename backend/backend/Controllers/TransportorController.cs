@@ -1,7 +1,7 @@
-﻿using backend.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PrisjusteringProsjekt.Models;
+using backend.Data;
 
 namespace PrisjusteringProsjekt.Controllers;
 
@@ -36,7 +36,6 @@ public class TransportorController : ControllerBase
     {
         var transportor = await _context.Transportorer.FindAsync(transportorId);
         if (transportor == null) return NotFound();
-
         return transportor;
     }
 
@@ -47,7 +46,6 @@ public class TransportorController : ControllerBase
     public async Task<ActionResult<Transportor>> PostTransportor(Transportor transportor)
     {
         transportor.CreatedAt = DateTime.UtcNow;
-
         _context.Transportorer.Add(transportor);
         await _context.SaveChangesAsync();
 
@@ -68,19 +66,26 @@ public class TransportorController : ControllerBase
 
         transportor.UpdatedAt = DateTime.UtcNow;
         _context.Entry(eksisterende).CurrentValues.SetValues(transportor);
-
         await _context.SaveChangesAsync();
+
         return NoContent();
     }
 
     /// <summary>
-    /// Slett en transportør.
+    /// Slett en transportør (kun hvis ikke i bruk).
     /// </summary>
     [HttpDelete("{transportorId}")]
     public async Task<IActionResult> DeleteTransportor(int transportorId)
     {
-        var transportor = await _context.Transportorer.FindAsync(transportorId);
+        var transportor = await _context.Transportorer
+            .Include(t => t.Prislinjer)
+            .Include(t => t.PrislinjeHistorikk)
+            .FirstOrDefaultAsync(t => t.TransportorId == transportorId);
+
         if (transportor == null) return NotFound();
+
+        bool iBruk = (transportor.Prislinjer?.Any() == true) || (transportor.PrislinjeHistorikk?.Any() == true);
+        if (iBruk) return Conflict("Kan ikke slette – transportøren er i bruk.");
 
         _context.Transportorer.Remove(transportor);
         await _context.SaveChangesAsync();

@@ -16,6 +16,13 @@ namespace PrisjusteringProsjekt.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
 
+        public ICollection<Container>? Containere { get; set; }
+        public ICollection<Leie>? Leier { get; set; }
+        public ICollection<Prislinje>? Prislinjer { get; set; }
+        public ICollection<PrislinjeHistorikk>? PrislinjeHistorikk { get; set; }
+
+
+
     }
 
 }

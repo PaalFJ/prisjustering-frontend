@@ -70,7 +70,7 @@ public class PrislinjeController : ControllerBase
             EndretAv = "systembruker",
             Endringstype = Endringstype.Redigering,
             EndringsNotat = updated.EndringsNotat,
-            // kopier alle pris- og kontekstfelt her
+            // TODO: Kopier relevante felter for sporbarhet
         };
 
         _context.PrislinjeHistorikk.Add(historikk);
@@ -99,6 +99,9 @@ public class PrislinjeController : ControllerBase
         return NoContent();
     }
 
+    /// <summary>
+    /// Kalkulerer kostpriser og veiledende pris basert på innsendte kostnader og påslag.
+    /// </summary>
     private void BeregnPriser(Prislinje p)
     {
         p.Kostpris1 =
@@ -117,7 +120,7 @@ public class PrislinjeController : ControllerBase
 
         if (p.BrukManuellVeiledendePris)
         {
-            // behold VeiledendePris
+            // behold eksisterende veiledende pris
         }
         else if (p.BrukProsentbasertVeiledendePris)
         {

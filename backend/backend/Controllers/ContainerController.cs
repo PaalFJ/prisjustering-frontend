@@ -27,6 +27,7 @@ public class ContainerController : ControllerBase
     {
         return await _context.Containere
             .Include(c => c.ContainerType)
+            .Include(c => c.Enhet)
             .ToListAsync();
     }
 
@@ -38,6 +39,7 @@ public class ContainerController : ControllerBase
     {
         var container = await _context.Containere
             .Include(c => c.ContainerType)
+            .Include(c => c.Enhet) // Inkluderer Enhet-relasjonen
             .FirstOrDefaultAsync(c => c.ContainerId == containerId);
 
         if (container == null) return NotFound();
@@ -69,17 +71,29 @@ public class ContainerController : ControllerBase
         return NoContent();
     }
 
-    /// <summary>
-    /// Slett en container.
-    /// </summary>
     [HttpDelete("{containerId}")]
     public async Task<IActionResult> DeleteContainer(int containerId)
     {
-        var container = await _context.Containere.FindAsync(containerId);
-        if (container == null) return NotFound();
+        var container = await _context.Containere
+            .Include(c => c.Leier)
+            .Include(c => c.Prislinjer)
+            .Include(c => c.PrislinjeHistorikk)
+            .FirstOrDefaultAsync(c => c.ContainerId == containerId);
+
+        if (container == null)
+            return NotFound();
+
+        bool iBruk = (container.Leier?.Any() == true) ||
+                     (container.Prislinjer?.Any() == true) ||
+                     (container.PrislinjeHistorikk?.Any() == true);
+
+        if (iBruk)
+            return Conflict("Kan ikke slette. Containeren er i bruk i systemet.");
 
         _context.Containere.Remove(container);
         await _context.SaveChangesAsync();
+
         return NoContent();
     }
+
 }

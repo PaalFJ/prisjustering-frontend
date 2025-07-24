@@ -1,5 +1,5 @@
 // src/pages/WelcomePage/WelcomePage.tsx
-import React from 'react';
+import React from "react";
 
 /**
  * WelcomePage
@@ -11,7 +11,7 @@ export default function WelcomePage() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-4">Velkommen til Prisjustering</h1>
-      <p>Bruk menyen til venstre for å navigere til prislister, artikler eller grunndata.</p>
+      <p>Andrea er kul!</p>
     </div>
   );
 }

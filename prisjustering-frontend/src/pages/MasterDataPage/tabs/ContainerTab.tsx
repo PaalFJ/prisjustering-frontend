@@ -1,3 +1,5 @@
+// src/pages/MasterDataPage/tabs/ContainerTab.tsx
+
 import { useState } from "react";
 import type { Container } from "@/types/masterData";
 import {
@@ -30,10 +32,12 @@ export default function ContainerTab() {
   const { data, refetch } = useMasterData();
   const list = data?.containere || [];
   const typer = data?.containerTyper || [];
+  const enheter = data?.enheter || [];
 
   const [form, setForm] = useState({
     navn: "",
     containerTypeId: 0,
+    enhetId: 0,
     notat: "",
     aktiv: true,
     volum: "",
@@ -44,6 +48,7 @@ export default function ContainerTab() {
     setForm({
       navn: "",
       containerTypeId: 0,
+      enhetId: 0,
       notat: "",
       aktiv: true,
       volum: "",
@@ -71,7 +76,6 @@ export default function ContainerTab() {
               value={form.navn}
               onChange={(e) => handleChange("navn", e.target.value)}
             />
-
             <Select
               value={form.containerTypeId?.toString()}
               onValueChange={(val) =>
@@ -93,12 +97,29 @@ export default function ContainerTab() {
               </SelectContent>
             </Select>
 
+            <Select
+              value={form.enhetId?.toString()}
+              onValueChange={(val) => handleChange("enhetId", parseInt(val))}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Velg enhet *" />
+              </SelectTrigger>
+              <SelectContent>
+                {enheter.map((e) => (
+                  <SelectItem key={e.enhetId} value={e.enhetId.toString()}>
+                    {e.navn}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
             <Input
               type="number"
-              placeholder="Volum (liter)"
+              placeholder="Volum"
               value={form.volum}
               onChange={(e) => handleChange("volum", e.target.value)}
             />
+
             <Input
               placeholder="Notat"
               value={form.notat}
@@ -123,7 +144,7 @@ export default function ContainerTab() {
                 reset();
                 await refetch();
               }}
-              disabled={!form.navn || !form.containerTypeId}
+              disabled={!form.navn || !form.containerTypeId || !form.enhetId}
             >
               Lagre
             </Button>
@@ -136,6 +157,7 @@ export default function ContainerTab() {
           { key: "containerId", label: "ID" },
           { key: "navn", label: "Navn" },
           { key: "containerTypeId", label: "Type" },
+          { key: "enhetId", label: "Enhet" },
           { key: "volum", label: "Volum" },
           { key: "notat", label: "Notat" },
           { key: "aktiv", label: "Aktiv" },
@@ -151,133 +173,159 @@ export default function ContainerTab() {
             );
             return type?.navn || "–";
           }
+          if (key === "enhetId") {
+            const enhet = enheter.find((e) => e.enhetId === row.enhetId);
+            return enhet?.navn || "–";
+          }
           if (key === "volum")
-            return row.volum !== undefined ? `${row.volum} L` : "–";
+            return row.volum !== undefined
+              ? `${row.volum} ${
+                  row.enhetId
+                    ? enheter.find((e) => e.enhetId === row.enhetId)?.navn || ""
+                    : "L"
+                }`
+              : "–";
           const value = row[key as keyof Container];
           return typeof value === "string" || typeof value === "number"
             ? value
             : "–";
         }}
-        renderActions={(item) => {
-          const c = item as Container;
-          return (
-            <>
-              <Dialog>
-                <DialogTrigger asChild>
+        renderActions={(c) => (
+          <>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => {
+                    setForm({
+                      navn: c.navn || "",
+                      containerTypeId: c.containerTypeId || 0,
+                      enhetId: c.enhetId || 0,
+                      notat: c.notat || "",
+                      aktiv: c.aktiv,
+                      volum: c.volum?.toString() || "",
+                    });
+                    setEditId(c.containerId);
+                  }}
+                >
+                  Rediger
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Rediger container</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-2">
+                  <Input
+                    placeholder="Navn *"
+                    value={form.navn}
+                    onChange={(e) => handleChange("navn", e.target.value)}
+                  />
+                  <Select
+                    value={form.containerTypeId?.toString()}
+                    onValueChange={(val) =>
+                      handleChange("containerTypeId", parseInt(val))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Velg type *" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {typer.map((t) => (
+                        <SelectItem
+                          key={t.containerTypeId}
+                          value={t.containerTypeId.toString()}
+                        >
+                          {t.navn}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  <Select
+                    value={form.enhetId?.toString()}
+                    onValueChange={(val) =>
+                      handleChange("enhetId", parseInt(val))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Velg enhet *" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {enheter.map((e) => (
+                        <SelectItem
+                          key={e.enhetId}
+                          value={e.enhetId.toString()}
+                        >
+                          {e.navn}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  <Input
+                    type="number"
+                    placeholder="Volum"
+                    value={form.volum}
+                    onChange={(e) => handleChange("volum", e.target.value)}
+                  />
+                  <Input
+                    placeholder="Notat"
+                    value={form.notat}
+                    onChange={(e) => handleChange("notat", e.target.value)}
+                  />
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      checked={form.aktiv}
+                      onCheckedChange={(val) =>
+                        handleChange("aktiv", val === true)
+                      }
+                    />
+                    <label>Aktiv</label>
+                  </div>
+                </div>
+                <DialogFooter>
                   <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => {
-                      setForm({
-                        navn: c.navn || "",
-                        containerTypeId: c.containerTypeId || 0,
-                        notat: c.notat || "",
-                        aktiv: c.aktiv,
-                        volum: c.volum?.toString() || "",
-                      });
-                      setEditId(c.containerId);
+                    onClick={async () => {
+                      if (editId !== null) {
+                        await updateContainer(editId, {
+                          ...form,
+                          containerId: editId,
+                          volum: form.volum
+                            ? parseFloat(form.volum)
+                            : undefined,
+                        });
+                        reset();
+                        await refetch();
+                      }
                     }}
                   >
-                    Rediger
+                    Oppdater
                   </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Rediger container</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-2">
-                    <Input
-                      placeholder="Navn *"
-                      value={form.navn}
-                      onChange={(e) => handleChange("navn", e.target.value)}
-                    />
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
 
-                    <Select
-                      value={form.containerTypeId?.toString()}
-                      onValueChange={(val) =>
-                        handleChange("containerTypeId", parseInt(val))
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Velg type *" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {typer.map((t) => (
-                          <SelectItem
-                            key={t.containerTypeId}
-                            value={t.containerTypeId.toString()}
-                          >
-                            {t.navn}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-
-                    <Input
-                      type="number"
-                      placeholder="Volum (liter)"
-                      value={form.volum}
-                      onChange={(e) => handleChange("volum", e.target.value)}
-                    />
-                    <Input
-                      placeholder="Notat"
-                      value={form.notat}
-                      onChange={(e) => handleChange("notat", e.target.value)}
-                    />
-
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        checked={form.aktiv}
-                        onCheckedChange={(val) =>
-                          handleChange("aktiv", val === true)
-                        }
-                      />
-                      <label>Aktiv</label>
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <Button
-                      onClick={async () => {
-                        if (editId !== null) {
-                          await updateContainer(editId, {
-                            ...form,
-                            volum: form.volum
-                              ? parseFloat(form.volum)
-                              : undefined,
-                            containerId: editId,
-                          });
-                          reset();
-                          await refetch();
-                        }
-                      }}
-                      disabled={!form.navn || !form.containerTypeId}
-                    >
-                      Oppdater
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-
-              <Button
-                size="sm"
-                variant="destructive"
-                onClick={async () => {
-                  if (confirm(`Slette "${c.navn}"?`)) {
-                    try {
-                      await deleteContainer(c.containerId);
-                      await refetch();
-                    } catch (err: any) {
-                      alert("Feil ved sletting.");
-                      console.error(err);
-                    }
+            <Button
+              size="sm"
+              variant="destructive"
+              onClick={async () => {
+                if (confirm(`Slette "${c.navn}"?`)) {
+                  try {
+                    await deleteContainer(c.containerId);
+                    await refetch();
+                  } catch (err: any) {
+                    alert("Feil ved sletting.");
+                    console.error(err);
                   }
-                }}
-              >
-                Slett
-              </Button>
-            </>
-          );
-        }}
+                }
+              }}
+            >
+              Slett
+            </Button>
+          </>
+        )}
       />
     </div>
   );

@@ -33,6 +33,7 @@ public class PrislinjeHistorikkController : ControllerBase
     /// <summary>
     /// Hent historikk for én spesifikk prislinje.
     /// </summary>
+    /// <param name="prislinjeId">ID til prislinjen</param>
     [HttpGet("prislinje/{prislinjeId}")]
     public async Task<ActionResult<IEnumerable<PrislinjeHistorikk>>> GetHistorikkForPrislinje(int prislinjeId)
     {
@@ -41,7 +42,8 @@ public class PrislinjeHistorikkController : ControllerBase
             .OrderByDescending(h => h.EndretTidspunkt)
             .ToListAsync();
 
-        if (historikk.Count == 0) return NotFound();
+        if (!historikk.Any())
+            return NotFound();
 
         return historikk;
     }
@@ -49,11 +51,13 @@ public class PrislinjeHistorikkController : ControllerBase
     /// <summary>
     /// Hent én historikkpost basert på historikk-ID.
     /// </summary>
+    /// <param name="id">ID til historikkpost</param>
     [HttpGet("{id}")]
     public async Task<ActionResult<PrislinjeHistorikk>> GetHistorikkPost(int id)
     {
         var historikk = await _context.PrislinjeHistorikk.FindAsync(id);
-        if (historikk == null) return NotFound();
+        if (historikk == null)
+            return NotFound();
 
         return historikk;
     }

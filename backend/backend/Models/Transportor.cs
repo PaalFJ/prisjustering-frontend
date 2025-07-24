@@ -16,8 +16,11 @@ namespace PrisjusteringProsjekt.Models
         [MaxLength(500)]
         public string? Notat { get; set; }
 
-
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+
+        // Navigasjon
+        public ICollection<Prislinje>? Prislinjer { get; set; }
+        public ICollection<PrislinjeHistorikk>? PrislinjeHistorikk { get; set; }
     }
 }

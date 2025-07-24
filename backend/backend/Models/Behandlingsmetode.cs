@@ -1,5 +1,4 @@
-﻿using PrisjusteringProsjekt.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PrisjusteringProsjekt.Models
@@ -16,6 +15,8 @@ namespace PrisjusteringProsjekt.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+
+        // Navigasjon – Fraksjoner som bruker denne metoden
+        public ICollection<Fraksjon>? Fraksjoner { get; set; }
     }
 }
-

@@ -30,13 +30,13 @@ type TabKey =
 
 const tabConfig: { key: TabKey; title: string }[] = [
   { key: "fraksjonsgrupper", title: "Fraksjonsgrupper" },
-  { key: "enheter", title: "Enheter" },
+  { key: "containerTyper", title: "Containertyper" },
+  { key: "containere", title: "Containere" },
+  { key: "mottak", title: "Mottak" },
   { key: "leverandorer", title: "Leverandører" },
   { key: "transportorer", title: "Transportører" },
-  { key: "containerTyper", title: "Containertyper" },
-  { key: "mottak", title: "Mottak" },
+  { key: "enheter", title: "Enheter" },
   { key: "behandlingsmetoder", title: "Behandlingsmetoder" },
-  { key: "containere", title: "Containere" },
 ];
 
 export default function MasterDataPage() {

@@ -18,6 +18,9 @@ public class Enhet
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+
+        public ICollection<Fraksjon>? Fraksjoner { get; set; }
+        public ICollection<Leie>? Leier { get; set; }
     }
 
 }

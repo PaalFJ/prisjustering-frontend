@@ -1,3 +1,5 @@
+// LeieTab.tsx – oppdatert til å bruke artikkeltekstInternt i stedet for navn
+
 import { useState } from "react";
 import {
   useLeier,
@@ -26,6 +28,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/shadcn/select";
+import FormField from "@/components/ui/FormField/FormField";
 
 export default function LeieTab() {
   const { data: master } = useMasterData();
@@ -40,7 +43,7 @@ export default function LeieTab() {
   const containere = master?.containere || [];
 
   const [form, setForm] = useState({
-    navn: "",
+    artikkeltekstInternt: "",
     enhetId: 0,
     leverandorId: 0,
     containerTypeId: 0,
@@ -48,11 +51,16 @@ export default function LeieTab() {
     notat: "",
     aktiv: true,
   });
+
   const [editId, setEditId] = useState<number | null>(null);
+
+  const filtrerteContainere = containere.filter(
+    (c) => c.containerTypeId === form.containerTypeId
+  );
 
   const reset = () => {
     setForm({
-      navn: "",
+      artikkeltekstInternt: "",
       enhetId: 0,
       leverandorId: 0,
       containerTypeId: 0,
@@ -78,97 +86,113 @@ export default function LeieTab() {
             <DialogTitle>Ny leie</DialogTitle>
           </DialogHeader>
           <div className="space-y-2">
-            <Input
-              placeholder="Navn *"
-              value={form.navn}
-              onChange={(e) => handleChange("navn", e.target.value)}
-            />
-
-            <Select
-              value={form.enhetId.toString()}
-              onValueChange={(val) => handleChange("enhetId", parseInt(val))}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Velg enhet *" />
-              </SelectTrigger>
-              <SelectContent>
-                {enheter.map((e) => (
-                  <SelectItem key={e.enhetId} value={e.enhetId.toString()}>
-                    {e.navn}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            <Select
-              value={form.leverandorId.toString()}
-              onValueChange={(val) =>
-                handleChange("leverandorId", parseInt(val))
-              }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Velg leverandør" />
-              </SelectTrigger>
-              <SelectContent>
-                {leverandorer.map((l) => (
-                  <SelectItem
-                    key={l.leverandorId}
-                    value={l.leverandorId.toString()}
-                  >
-                    {l.navn}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            <Select
-              value={form.containerTypeId.toString()}
-              onValueChange={(val) =>
-                handleChange("containerTypeId", parseInt(val))
-              }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Velg containertype" />
-              </SelectTrigger>
-              <SelectContent>
-                {containerTyper.map((ct) => (
-                  <SelectItem
-                    key={ct.containerTypeId}
-                    value={ct.containerTypeId.toString()}
-                  >
-                    {ct.navn}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            <Select
-              value={form.containerId.toString()}
-              onValueChange={(val) =>
-                handleChange("containerId", parseInt(val))
-              }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Velg container" />
-              </SelectTrigger>
-              <SelectContent>
-                {containere.map((c) => (
-                  <SelectItem
-                    key={c.containerId}
-                    value={c.containerId.toString()}
-                  >
-                    {c.navn}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            <Input
-              placeholder="Notat"
-              value={form.notat}
-              onChange={(e) => handleChange("notat", e.target.value)}
-            />
-
+            <FormField label="Navn *">
+              <Input
+                value={form.artikkeltekstInternt}
+                onChange={(e) =>
+                  handleChange("artikkeltekstInternt", e.target.value)
+                }
+              />
+            </FormField>
+            <FormField label="Enhet">
+              <Select
+                value={form.enhetId.toString()}
+                onValueChange={(val) => handleChange("enhetId", parseInt(val))}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Velg enhet *" />
+                </SelectTrigger>
+                <SelectContent>
+                  {enheter.map((e) => (
+                    <SelectItem key={e.enhetId} value={e.enhetId.toString()}>
+                      {e.navn}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </FormField>
+            <FormField label="Leverandør">
+              <Select
+                value={form.leverandorId.toString()}
+                onValueChange={(val) =>
+                  handleChange("leverandorId", parseInt(val))
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Velg leverandør" />
+                </SelectTrigger>
+                <SelectContent>
+                  {leverandorer.map((l) => (
+                    <SelectItem
+                      key={l.leverandorId}
+                      value={l.leverandorId.toString()}
+                    >
+                      {l.navn}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </FormField>
+            <FormField label="Containertype">
+              <Select
+                value={form.containerTypeId.toString()}
+                onValueChange={(val) => {
+                  const containerTypeId = parseInt(val);
+                  setForm((prev) => ({
+                    ...prev,
+                    containerTypeId,
+                    containerId: 0,
+                  }));
+                }}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Velg containertype" />
+                </SelectTrigger>
+                <SelectContent>
+                  {containerTyper.map((ct) => (
+                    <SelectItem
+                      key={ct.containerTypeId}
+                      value={ct.containerTypeId.toString()}
+                    >
+                      {ct.navn}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </FormField>
+            <FormField label="Container">
+              <Select
+                value={form.containerId.toString()}
+                onValueChange={(val) =>
+                  handleChange("containerId", parseInt(val))
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Velg container" />
+                </SelectTrigger>
+                <SelectContent>
+                  {filtrerteContainere.map((c) => (
+                    <SelectItem
+                      key={c.containerId}
+                      value={c.containerId.toString()}
+                    >
+                      {c.navn}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {filtrerteContainere.length === 0 && (
+                <p className="text-sm text-yellow-600">
+                  Ingen containere med valgt type
+                </p>
+              )}
+            </FormField>
+            <FormField label="Notat">
+              <Input
+                value={form.notat}
+                onChange={(e) => handleChange("notat", e.target.value)}
+              />
+            </FormField>
             <div className="flex items-center space-x-2">
               <Checkbox
                 checked={form.aktiv}
@@ -183,7 +207,7 @@ export default function LeieTab() {
                 await create.mutateAsync(form);
                 reset();
               }}
-              disabled={!form.navn || !form.enhetId}
+              disabled={!form.artikkeltekstInternt || !form.enhetId}
             >
               Lagre
             </Button>
@@ -194,7 +218,7 @@ export default function LeieTab() {
       <DataTable<Leie>
         columns={[
           { key: "leieId", label: "ID" },
-          { key: "navn", label: "Navn" },
+          { key: "artikkeltekstInternt", label: "Navn" },
           { key: "enhetId", label: "Enhet" },
           { key: "leverandorId", label: "Leverandør" },
           { key: "containerTypeId", label: "Type" },
@@ -224,44 +248,46 @@ export default function LeieTab() {
               containere.find((c) => c.containerId === row.containerId)?.navn ||
               "–"
             );
-          return row[key as keyof Leie];
+          return String(row[key as keyof Leie] ?? "–");
         }}
-        renderActions={(item) => {
-          const leie = item as Leie;
+        renderActions={(row) => {
+          const item = row as Leie;
           return (
-            <>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => {
-                      setForm({
-                        navn: leie.navn || "",
-                        enhetId: leie.enhetId || 0,
-                        leverandorId: leie.leverandorId || 0,
-                        containerTypeId: leie.containerTypeId || 0,
-                        containerId: leie.containerId || 0,
-                        notat: leie.notat || "",
-                        aktiv: leie.aktiv,
-                      });
-                      setEditId(leie.leieId);
-                    }}
-                  >
-                    Rediger
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Rediger leie</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-2">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => {
+                    setForm({
+                      artikkeltekstInternt: item.artikkeltekstInternt,
+                      enhetId: item.enhetId || 0,
+                      leverandorId: item.leverandorId || 0,
+                      containerTypeId: item.containerTypeId || 0,
+                      containerId: item.containerId || 0,
+                      notat: item.notat || "",
+                      aktiv: item.aktiv,
+                    });
+                    setEditId(item.leieId);
+                  }}
+                >
+                  Rediger
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Rediger leieartikkel</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-2">
+                  <FormField label="Navn *">
                     <Input
-                      placeholder="Navn *"
-                      value={form.navn}
-                      onChange={(e) => handleChange("navn", e.target.value)}
+                      value={form.artikkeltekstInternt}
+                      onChange={(e) =>
+                        handleChange("artikkeltekstInternt", e.target.value)
+                      }
                     />
-
+                  </FormField>
+                  <FormField label="Enhet">
                     <Select
                       value={form.enhetId.toString()}
                       onValueChange={(val) =>
@@ -282,7 +308,8 @@ export default function LeieTab() {
                         ))}
                       </SelectContent>
                     </Select>
-
+                  </FormField>
+                  <FormField label="Leverandør">
                     <Select
                       value={form.leverandorId.toString()}
                       onValueChange={(val) =>
@@ -303,12 +330,18 @@ export default function LeieTab() {
                         ))}
                       </SelectContent>
                     </Select>
-
+                  </FormField>
+                  <FormField label="Containertype">
                     <Select
                       value={form.containerTypeId.toString()}
-                      onValueChange={(val) =>
-                        handleChange("containerTypeId", parseInt(val))
-                      }
+                      onValueChange={(val) => {
+                        const containerTypeId = parseInt(val);
+                        setForm((prev) => ({
+                          ...prev,
+                          containerTypeId,
+                          containerId: 0,
+                        }));
+                      }}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Velg containertype" />
@@ -324,7 +357,8 @@ export default function LeieTab() {
                         ))}
                       </SelectContent>
                     </Select>
-
+                  </FormField>
+                  <FormField label="Container">
                     <Select
                       value={form.containerId.toString()}
                       onValueChange={(val) =>
@@ -335,61 +369,72 @@ export default function LeieTab() {
                         <SelectValue placeholder="Velg container" />
                       </SelectTrigger>
                       <SelectContent>
-                        {containere.map((c) => (
-                          <SelectItem
-                            key={c.containerId}
-                            value={c.containerId.toString()}
-                          >
-                            {c.navn}
-                          </SelectItem>
-                        ))}
+                        {containere
+                          .filter(
+                            (c) => c.containerTypeId === form.containerTypeId
+                          )
+                          .map((c) => (
+                            <SelectItem
+                              key={c.containerId}
+                              value={c.containerId.toString()}
+                            >
+                              {c.navn}
+                            </SelectItem>
+                          ))}
                       </SelectContent>
                     </Select>
-
+                  </FormField>
+                  <FormField label="Notat">
                     <Input
-                      placeholder="Notat"
                       value={form.notat}
                       onChange={(e) => handleChange("notat", e.target.value)}
                     />
-
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        checked={form.aktiv}
-                        onCheckedChange={(val) =>
-                          handleChange("aktiv", val === true)
-                        }
-                      />
-                      <label>Aktiv</label>
-                    </div>
+                  </FormField>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      checked={form.aktiv}
+                      onCheckedChange={(val) =>
+                        handleChange("aktiv", val === true)
+                      }
+                    />
+                    <label>Aktiv</label>
                   </div>
-                  <DialogFooter>
-                    <Button
-                      onClick={async () => {
-                        if (editId !== null) {
-                          await update.mutateAsync({ id: editId, data: form });
-                          reset();
-                        }
-                      }}
-                      disabled={!form.navn || !form.enhetId}
-                    >
-                      Oppdater
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-
+                </div>
+                <DialogFooter>
+                  <Button
+                    onClick={async () => {
+                      if (editId !== null) {
+                        await update.mutateAsync({ id: editId, data: form });
+                        reset();
+                      }
+                    }}
+                    disabled={!form.artikkeltekstInternt || !form.enhetId}
+                  >
+                    Oppdater
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
               <Button
                 size="sm"
                 variant="destructive"
                 onClick={async () => {
-                  if (confirm(`Slette "${leie.navn}"?`)) {
-                    await remove.mutateAsync(leie.leieId);
+                  if (confirm(`Slette "${item.artikkeltekstInternt}"?`)) {
+                    try {
+                      await remove.mutateAsync(item.leieId);
+                    } catch (err: any) {
+                      if (err.response?.status === 409) {
+                        alert("Kan ikke slette – leieartikkel er i bruk.");
+                      } else {
+                        alert("Feil ved sletting.");
+                        console.error(err);
+                      }
+                    }
                   }
                 }}
               >
                 Slett
               </Button>
-            </>
+            </Dialog>
           );
         }}
       />

@@ -1,7 +1,7 @@
-// src/services/article.ts
+//article.ts
 
 import axios from "@/lib/axios";
-import type { Fraksjon, Leie } from "@/types/article";
+import type { Fraksjon, Leie, Salgsvare, Gebyr } from "@/types/article";
 
 // Fraksjon-endepunkter
 export async function fetchFraksjoner(): Promise<Fraksjon[]> {
@@ -35,4 +35,41 @@ export async function updateLeie(id: number, data: Partial<Leie>) {
 }
 export async function deleteLeie(id: number) {
   return axios.delete(`/Leie/${id}`);
+}
+
+// Salgsvare-endepunkter
+export async function fetchSalgsvare(): Promise<Salgsvare[]> {
+  const res = await axios.get("/Salgsvare");
+  return res.data;
+}
+export async function createSalgsvare(data: Partial<Salgsvare>) {
+  const res = await axios.post("/Salgsvare", data);
+  return res.data;
+}
+export async function updateSalgsvare(id: number, data: Partial<Salgsvare>) {
+  const res = await axios.put(`/Salgsvare/${id}`, { ...data, salgsvareId: id });
+  return res.data;
+}
+export async function deleteSalgsvare(id: number) {
+  return axios.delete(`/Salgsvare/${id}`);
+}
+
+// Gebyr-endepunkter
+export async function fetchGebyrer(): Promise<Gebyr[]> {
+  const res = await axios.get("/Gebyr");
+  return res.data;
+}
+
+export async function createGebyr(data: Partial<Gebyr>) {
+  const res = await axios.post("/Gebyr", data);
+  return res.data;
+}
+
+export async function updateGebyr(id: number, data: Partial<Gebyr>) {
+  const res = await axios.put(`/Gebyr/${id}`, { ...data, gebyrId: id });
+  return res.data;
+}
+
+export async function deleteGebyr(id: number) {
+  return axios.delete(`/Gebyr/${id}`);
 }

@@ -59,7 +59,9 @@ public class BehandlingsmetodeController : ControllerBase
         if (behandlingsMetodeId != metode.BehandlingsMetodeId)
             return BadRequest("ID i URL stemmer ikke med objektet.");
 
+        metode.UpdatedAt = DateTime.UtcNow;
         _context.Entry(metode).State = EntityState.Modified;
+
         await _context.SaveChangesAsync();
         return NoContent();
     }
@@ -72,6 +74,10 @@ public class BehandlingsmetodeController : ControllerBase
     {
         var metode = await _context.Behandlingsmetoder.FindAsync(behandlingsMetodeId);
         if (metode == null) return NotFound();
+
+        bool iBruk = await _context.Fraksjoner.AnyAsync(f => f.BehandlingsmetodeId == behandlingsMetodeId);
+        if (iBruk)
+            return Conflict("Kan ikke slette. Behandlingsmetoden er i bruk av én eller flere fraksjoner.");
 
         _context.Behandlingsmetoder.Remove(metode);
         await _context.SaveChangesAsync();

@@ -20,7 +20,7 @@ public class LeieController : ControllerBase
     }
 
     /// <summary>
-    /// Hent alle leieartikler med tilhørende enhet, leverandør og containertyper.
+    /// Hent alle leieartikler med relasjoner.
     /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Leie>>> GetLeier()
@@ -28,6 +28,7 @@ public class LeieController : ControllerBase
         return await _context.Leier
             .Include(l => l.Enhet)
             .Include(l => l.Leverandor)
+            .Include(l => l.Transportor)
             .Include(l => l.ContainerType)
             .Include(l => l.Container)
             .ToListAsync();
@@ -42,27 +43,25 @@ public class LeieController : ControllerBase
         var leie = await _context.Leier
             .Include(l => l.Enhet)
             .Include(l => l.Leverandor)
+            .Include(l => l.Transportor)
             .Include(l => l.ContainerType)
             .Include(l => l.Container)
             .FirstOrDefaultAsync(l => l.LeieId == leieId);
 
         if (leie == null) return NotFound();
-
         return leie;
     }
 
     /// <summary>
-    /// Opprett en ny leieartikkel.
+    /// Opprett ny leieartikkel.
     /// </summary>
     [HttpPost]
     public async Task<ActionResult<Leie>> PostLeie(Leie leie)
     {
-        if (string.IsNullOrWhiteSpace(leie.Navn))
-            return BadRequest("Navn er påkrevd.");
-        if (leie.EnhetId <= 0)
-            return BadRequest("Ugyldig EnhetId.");
+        if (string.IsNullOrWhiteSpace(leie.ArtikkeltekstInternt))
+            return BadRequest("Artikkeltekst internt er påkrevd.");
 
-        leie.CreatedAt = DateTime.UtcNow;
+        if (leie.EnhetId <= 0) return BadRequest("Ugyldig EnhetId.");
 
         _context.Leier.Add(leie);
         await _context.SaveChangesAsync();
@@ -84,7 +83,6 @@ public class LeieController : ControllerBase
 
         leie.UpdatedAt = DateTime.UtcNow;
         _context.Entry(eksisterende).CurrentValues.SetValues(leie);
-
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -96,12 +94,17 @@ public class LeieController : ControllerBase
     [HttpDelete("{leieId}")]
     public async Task<IActionResult> DeleteLeie(int leieId)
     {
-        var leie = await _context.Leier.FindAsync(leieId);
+        var leie = await _context.Leier
+            .Include(l => l.Prislinjer)
+            .FirstOrDefaultAsync(l => l.LeieId == leieId);
+
         if (leie == null) return NotFound();
+
+        if (leie.Prislinjer.Any())
+            return Conflict("Kan ikke slette – leieartikkelen er i bruk i en prislinje.");
 
         _context.Leier.Remove(leie);
         await _context.SaveChangesAsync();
-
         return NoContent();
     }
 }

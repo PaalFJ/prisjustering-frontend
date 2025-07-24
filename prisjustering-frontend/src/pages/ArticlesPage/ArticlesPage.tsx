@@ -1,6 +1,8 @@
 // src/pages/ArticlesPage/ArticlesPage.tsx
 import FraksjonTab from "../ArticlesPage/tabs/FraksjonTab";
 import LeieTab from "../ArticlesPage/tabs/LeieTab";
+import SalgsvareTab from "./tabs/SalgsvareTab";
+import GebyrTab from "./tabs/GebyrTab";
 
 import {
   Tabs,
@@ -17,6 +19,9 @@ export default function ArticlesPage() {
         <TabsList>
           <TabsTrigger value="fraksjon">Fraksjoner</TabsTrigger>
           <TabsTrigger value="leie">Leie</TabsTrigger>
+          <TabsTrigger value="salgsvare">Salgsvare</TabsTrigger>
+          <TabsTrigger value="gebyr">Gebyrer</TabsTrigger>
+          {/* Add more tabs as needed */}
           {/* <TabsTrigger value="leie">Leie</TabsTrigger> */}
         </TabsList>
 
@@ -26,6 +31,14 @@ export default function ArticlesPage() {
 
         <TabsContent value="leie">
           <LeieTab />
+        </TabsContent>
+
+        <TabsContent value="salgsvare">
+          <SalgsvareTab />
+        </TabsContent>
+
+        <TabsContent value="gebyr">
+          <GebyrTab />
         </TabsContent>
 
         {/* <TabsContent value="leie">
